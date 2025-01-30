@@ -33,7 +33,7 @@ app.post("/register", async (req, res) => {
 
     res.status(201).json({ message: "User registered successfully", user });
   } catch (error) {
-    res.status(400).json({ error: "Username or email already exists" });
+    res.status(400).json(error.message);
   }
 });
 
