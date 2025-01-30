@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
@@ -8,13 +8,12 @@ const Categories = () => {
   const [selectedGenre, setSelectedGenre] = useState(null);
 
   useEffect(() => {
-    // Fetch genres from TMDB
     const fetchGenres = async () => {
       try {
         const response = await axios.get(
           "https://api.themoviedb.org/3/genre/movie/list",
           {
-            params: { api_key: "268ae786b312d7c19a0e297e679b8d24" }, // Replace with API_KEY if using tmdbApi.js
+            params: { api_key: "268ae786b312d7c19a0e297e679b8d24" }, 
           }
         );
         setGenres(response.data.genres);
@@ -33,7 +32,7 @@ const Categories = () => {
         "https://api.themoviedb.org/3/discover/movie",
         {
           params: {
-            api_key: "268ae786b312d7c19a0e297e679b8d24", // Replace with API_KEY if using tmdbApi.js
+            api_key: "268ae786b312d7c19a0e297e679b8d24", 
             with_genres: genreId,
           },
         }
@@ -46,15 +45,18 @@ const Categories = () => {
 
   return (
     <div className="p-6 bg-indigo-900 text-gray-300 min-h-screen">
-      <h1 className="text-4xl font-bold mb-6">Categories</h1>
-      <div className="flex flex-wrap gap-4 mb-8">
+      <h1 className="text-4xl font-bold mb-6 text-center">Categories</h1>
+
+      <div className="flex flex-wrap justify-center gap-6 mb-8">
         {genres.map((genre) => (
           <button
             key={genre.id}
             onClick={() => fetchMoviesByGenre(genre.id)}
-            className={`px-4 py-2 rounded-lg ${
-              selectedGenre === genre.id ? "bg-emerald-500" : "bg-gray-700"
-            } hover:bg-emerald-600`}
+            className={`px-6 py-3 text-lg font-semibold rounded-lg transition-colors duration-300 ${
+              selectedGenre === genre.id
+                ? "bg-emerald-500 text-white"
+                : "bg-gray-700 text-gray-300 hover:bg-emerald-600 hover:text-white"
+            }`}
           >
             {genre.name}
           </button>

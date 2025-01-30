@@ -7,7 +7,6 @@ import axios from "axios";
 const Home = ({ query, setQuery, handleSearch, movies, error }) => {
   const [randomMovies, setRandomMovies] = useState([]);
 
-  // Fetch random movies on component mount
   useEffect(() => {
     const fetchRandomMovies = async () => {
       try {
@@ -15,7 +14,7 @@ const Home = ({ query, setQuery, handleSearch, movies, error }) => {
           "https://api.themoviedb.org/3/discover/movie",
           {
             params: {
-              api_key: "268ae786b312d7c19a0e297e679b8d24", // Replace with API_KEY if using tmdbApi.js
+              api_key: "268ae786b312d7c19a0e297e679b8d24",
               sort_by: "popularity.desc",
             },
           }
@@ -31,17 +30,14 @@ const Home = ({ query, setQuery, handleSearch, movies, error }) => {
 
   return (
     <div className="p-6">
-      {/* Search Bar */}
       <SearchBar
         query={query}
         setQuery={setQuery}
         handleSearch={handleSearch}
       />
 
-      {/* Error Message */}
       {error && <div className="text-center text-red-500 mt-4">{error}</div>}
 
-      {/* Movie Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {movies.length > 0
           ? movies.map((movie) => <MovieCard key={movie.id} movie={movie} />)

@@ -16,7 +16,7 @@ const Login = () => {
 
     try {
       await login(username, password);
-      navigate("/"); // Redirect to Home on successful login
+      navigate("/");
     } catch (err) {
       setError("Invalid credentials. Please try again.");
     }

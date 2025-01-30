@@ -72,7 +72,6 @@ function App() {
               }
             />
 
-            {/* Protected Movie Details Route */}
             <Route
               path="/movie/:id"
               element={
@@ -82,7 +81,6 @@ function App() {
               }
             />
 
-            {/* Protected Account Page */}
             <Route
               path="/account"
               element={
